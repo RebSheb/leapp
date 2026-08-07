@@ -21,7 +21,7 @@
             ],
         }],
         ['OS not in ["win"]', {
-            'sources': [ 'dpapi-addon/dpapi_not_supported.ccp' ]
+            'sources': [ 'dpapi-addon/dpapi_not_supported.cpp' ]
         }]
       ]
     }

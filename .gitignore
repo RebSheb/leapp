@@ -88,6 +88,7 @@ lerna-debug.log
 
 .run
 
+dpapi-addon/build
 packages/dpapi-addon/build
 
 packages/desktop-app/integration-tests/.env.ts
@@ -96,3 +97,4 @@ nightly-version
 packages/desktop-app/projects
 
 packages/desktop-app/.sentry-token
+dpapi-addon/bin/
