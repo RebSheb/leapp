@@ -47,7 +47,7 @@ export class AppNativeService implements INativeService {
 
   constructor() {
     if (this.isElectron) {
-      this.log = window.require("electron-log");
+      this.log = window.require("electron-log/renderer");
       this.fs = window.require("fs-extra");
       this.rimraf = window.require("rimraf");
       this.os = window.require("os");

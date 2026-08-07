@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { UpdateDialogComponent } from "../components/dialogs/update-dialog/update-dialog.component";
-import compareVersions from "compare-versions";
+import { compareVersions } from "compare-versions";
 import { HttpClient } from "@angular/common/http";
 import md from "markdown-it";
 import { AppNativeService } from "./app-native.service";
