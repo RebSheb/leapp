@@ -7,7 +7,7 @@ import { setTheme } from "ngx-bootstrap/utils";
 import { AppMfaCodePromptService } from "./services/app-mfa-code-prompt.service";
 import { AppAwsAuthenticationService } from "./services/app-aws-authentication.service";
 import { UpdaterService } from "./services/updater.service";
-import compareVersions from "compare-versions";
+import { compareVersions } from "compare-versions";
 import { LoggedEntry, LogLevel, LogService } from "@noovolari/leapp-core/services/log-service";
 import { BehaviouralSubjectService } from "@noovolari/leapp-core/services/behavioural-subject-service";
 import { TimerService } from "@noovolari/leapp-core/services/timer-service";

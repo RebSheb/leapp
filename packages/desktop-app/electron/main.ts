@@ -20,8 +20,6 @@ contextMenu({
   showSearchWithGoogle: false
 });
 
-// Fix for warning at startup
-app.allowRendererProcessReuse = true;
 app.disableHardwareAcceleration();
 
 if (process.platform === "linux") {
@@ -29,8 +27,7 @@ if (process.platform === "linux") {
   app.commandLine.appendSwitch("in-process-gpu");
 }
 
-app.setAsDefaultProtocolClient('leapp');
-
+app.setAsDefaultProtocolClient("leapp");
 
 // Main Window configuration: set here the options to make it works with your app
 // Electron is the application wrapper so NOT log is prompted when we build an
@@ -44,10 +41,12 @@ const windowDefaultConfig = {
     icon: path.join(__dirname, `assets/images/Leapp.png`),
     resizable: true,
     webPreferences: {
+      // Keep Node in the renderer for the existing AppNativeService bridge.
+      // Migrating to preload + contextBridge is a follow-up hardening step.
       devTools: !environment.production,
       contextIsolation: false,
-      enableRemoteModule: true,
-      nodeIntegration: true
+      nodeIntegration: true,
+      sandbox: false,
     },
   },
 };
@@ -129,6 +128,7 @@ const generateMainWindow = () => {
   const createWindow = () => {
     // Generate the App Window
     win = new BrowserWindow({ ...windowDefaultConfig.browserWindow });
+    remote.enable(win.webContents);
     win.setMenuBarVisibility(false); // Hide Window Menu to make it compliant with MacOSX
     win.removeMenu(); // Remove Window Menu inside App, to make it compliant with Linux
     win.setMenu(null);
@@ -204,8 +204,6 @@ const generateMainWindow = () => {
       win.webContents.send("PLUGIN_URL", url);
     });
 
-    remote.enable(win.webContents);
-
     // Protocol handler for win32 and linux for deep linking when the app is already launched.
     // The url is passed in the args so we read and write to a temp file before the frontend is
     // launched, this way the frontend can read the temp file and load the plugin
@@ -218,13 +216,14 @@ const generateMainWindow = () => {
   const createTrayWindow = () => {
     // Generate the App Window
     const opts = { ...windowDefaultConfig.browserWindow, frame: false };
-    opts["titleBarStyle"] = "CustomOnHover";
+    opts["titleBarStyle"] = "customButtonsOnHover";
     opts["titleBarOverlay"] = true;
     opts["minimizable"] = false;
     opts["maximizable"] = false;
     opts["closable"] = false;
 
     trayWin = new BrowserWindow(opts);
+    remote.enable(trayWin.webContents);
     trayWin.setMenuBarVisibility(false); // Hide Window Menu to make it compliant with MacOSX
     trayWin.removeMenu(); // Remove Window Menu inside App, to make it compliant with Linux
     trayWin.setMenu(null);
@@ -246,8 +245,6 @@ const generateMainWindow = () => {
       // Open web tools for diagnostics
       trayWin.webContents.once("dom-ready", () => {});
     }
-
-    remote.enable(trayWin.webContents);
   };
 
   const createTray = () => {
@@ -274,7 +271,6 @@ const generateMainWindow = () => {
   app.on("activate", () => {
     if (win === undefined) {
       createWindow();
-      require("electron-disable-file-drop");
     } else {
       win.show();
     }

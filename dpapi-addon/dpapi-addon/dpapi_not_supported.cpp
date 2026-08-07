@@ -3,6 +3,7 @@
  * Licensed under the MIT License.
  */
 
+#include <nan.h>
 #include <node.h>
 
 v8::Local<v8::String> CreateUtf8String(v8::Isolate* isolate, char* strData)
