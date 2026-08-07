@@ -2,7 +2,9 @@
   "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "analytics": "a9497ed5-4b2f-482f-8e51-1f9817d1bec2",
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -153,6 +155,5 @@
         }
       }
     }
-  },
-  "defaultProject": "leapp-client"
+  }
 }
