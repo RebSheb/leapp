@@ -277,5 +277,8 @@
     "ts-node": "^10.9.2",
     "typescript": "~5.7.3",
     "util": "^0.12.5"
+  },
+  "overrides": {
+    "node-gyp": "^12.1.0"
   }
 }
