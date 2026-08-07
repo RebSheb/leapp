@@ -1,6 +1,7 @@
 import { contextMenu } from "./context-menu";
 import * as path from "path";
 import { environment } from "../src/environments/environment";
+import { attachMainWindowWebContentsListeners, registerIpcHandlers } from "./register-ipc-handlers";
 
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require("electron");
 const electronLocalshortcut = require('electron-localshortcut');
@@ -10,9 +11,6 @@ const url = require("url");
 const fs = require("fs");
 const os = require("os");
 const ipc = ipcMain;
-
-const remote = require("@electron/remote/main");
-remote.initialize();
 
 contextMenu({
   showInspectElement: false,
@@ -41,8 +39,9 @@ const windowDefaultConfig = {
     icon: path.join(__dirname, `assets/images/Leapp.png`),
     resizable: true,
     webPreferences: {
-      // Keep Node in the renderer for the existing AppNativeService bridge.
-      // Migrating to preload + contextBridge is a follow-up hardening step.
+      // Phase 1: preload IPC replaces @electron/remote. Node stays in the renderer
+      // for sync fs/keytar/exec; Phase 2 flips isolation and moves the Node bag.
+      preload: path.join(__dirname, "preload.js"),
       devTools: !environment.production,
       contextIsolation: false,
       nodeIntegration: true,
@@ -125,10 +124,12 @@ const generateMainWindow = () => {
   let trayOpen = false;
   let trayWin;
 
+  registerIpcHandlers(() => win);
+
   const createWindow = () => {
     // Generate the App Window
     win = new BrowserWindow({ ...windowDefaultConfig.browserWindow });
-    remote.enable(win.webContents);
+    attachMainWindowWebContentsListeners(win);
     win.setMenuBarVisibility(false); // Hide Window Menu to make it compliant with MacOSX
     win.removeMenu(); // Remove Window Menu inside App, to make it compliant with Linux
     win.setMenu(null);
@@ -223,7 +224,6 @@ const generateMainWindow = () => {
     opts["closable"] = false;
 
     trayWin = new BrowserWindow(opts);
-    remote.enable(trayWin.webContents);
     trayWin.setMenuBarVisibility(false); // Hide Window Menu to make it compliant with MacOSX
     trayWin.removeMenu(); // Remove Window Menu inside App, to make it compliant with Linux
     trayWin.setMenu(null);
