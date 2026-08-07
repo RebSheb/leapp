@@ -106,9 +106,19 @@ export const createSystemPreferencesFacade = () => {
 
 export const createNotificationFacade = () => {
   const leapp = getLeapp();
-  return (options: any) => ({
-    show: () => leapp.send(channels().NOTIFICATION_SHOW, options),
-  });
+  const c = channels();
+  // Must be constructable: callers do `new notification(options).show()`.
+  return class LeappNotification {
+    private options: any;
+
+    constructor(options: any) {
+      this.options = options;
+    }
+
+    show(): void {
+      leapp.send(c.NOTIFICATION_SHOW, this.options);
+    }
+  };
 };
 
 export const createCurrentWindowFacade = () => {

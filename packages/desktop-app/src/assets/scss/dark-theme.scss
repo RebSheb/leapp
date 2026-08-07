@@ -672,6 +672,74 @@ body.dark-theme {
     color: #DEDCDD!important;
   }
 
+  ///* Angular Material MDC migration overrides *///
+  // Material 15+ renders components with .mat-mdc-* / .mdc-* classes, so the
+  // legacy .mat-list-item / .mat-menu-* / .mat-tab-* rules above no longer match
+  // and components fall back to the prebuilt light theme (dark text). Restore
+  // the dark-theme text/background for the MDC DOM here.
+  .mat-mdc-list-item,
+  .mat-mdc-list-item .mdc-list-item__primary-text,
+  .mat-mdc-list-item .mat-mdc-list-item-unscoped-content,
+  .mat-mdc-list-item [mat-line] {
+    color: $dark-main-text-color !important;
+  }
+
+  .mat-mdc-list-item:hover {
+    background-color: $dark-hover-sidebar;
+  }
+
+  // Expansion panel ("Saved segments" and similar)
+  .mat-expansion-panel {
+    color: $dark-main-text-color;
+  }
+
+  .mat-expansion-panel-header,
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header-description,
+  [mat-subheader],
+  .mat-mdc-subheader {
+    color: $dark-main-text-color !important;
+  }
+
+  .mat-expansion-indicator::after {
+    color: $dark-main-text-color;
+  }
+
+  // Menus (workspace menu + right-click context menus)
+  .mat-mdc-menu-panel {
+    background-color: $dark-modal-background !important;
+    border: 1px solid $dark-mat-menu;
+  }
+
+  .mat-mdc-menu-content {
+    background-color: $dark-modal-background !important;
+  }
+
+  .mat-mdc-menu-item,
+  .mat-mdc-menu-item .mdc-list-item__primary-text,
+  .mat-mdc-menu-item .mat-mdc-menu-item-text,
+  .mat-mdc-menu-item span,
+  .mat-mdc-menu-item i {
+    color: $dark-main-text-color !important;
+  }
+
+  .mat-mdc-menu-item:hover:not([disabled]),
+  .mat-mdc-menu-item.mat-mdc-menu-item-highlighted:not([disabled]),
+  .mat-mdc-menu-item:focus:not([disabled]) {
+    background-color: $dark-modal-background !important;
+    color: $dark-main-text-color !important;
+  }
+
+  // Tabs (used inside dialogs)
+  .mat-mdc-tab-header {
+    border-bottom: 0.3px solid $dark-session-card-border;
+  }
+
+  .mat-mdc-tab .mdc-tab__text-label,
+  .mat-mdc-tab-link .mdc-tab__text-label {
+    color: $dark-main-text-color;
+  }
+
   .sidebar-flex div button {
     position: absolute;
     bottom: 49px;
