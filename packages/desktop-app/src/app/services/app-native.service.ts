@@ -3,6 +3,18 @@ import * as Keytar from "keytar";
 import { INativeService } from "@noovolari/leapp-core/interfaces/i-native-service";
 import { IMsalEncryptionService } from "@noovolari/leapp-core/interfaces/i-msal-encryption-service";
 import { MsalEncryptionService } from "./msal-encryption.service";
+import {
+  createAppFacade,
+  createBrowserWindowFacade,
+  createCurrentWindowFacade,
+  createDialogFacade,
+  createMenuFacade,
+  createNativeThemeFacade,
+  createNotificationFacade,
+  createSessionFacade,
+  createSystemPreferencesFacade,
+  createTrayFacade,
+} from "./electron-main-bridge";
 
 @Injectable({ providedIn: "root" })
 export class AppNativeService implements INativeService {
@@ -65,16 +77,7 @@ export class AppNativeService implements INativeService {
       this.followRedirects = window.require("follow-redirects");
       this.httpProxyAgent = window.require("http-proxy-agent");
       this.httpsProxyAgent = window.require("https-proxy-agent");
-      this.app = window.require("@electron/remote").app;
-      this.session = window.require("@electron/remote").session;
-      this.dialog = window.require("@electron/remote").dialog;
-      this.browserWindow = window.require("@electron/remote").BrowserWindow;
-      this.currentWindow = window.require("@electron/remote").getCurrentWindow();
-      this.menu = window.require("@electron/remote").Menu;
-      this.tray = window.require("@electron/remote").Tray;
       this.ipcRenderer = window.require("electron").ipcRenderer;
-      this.nativeTheme = window.require("@electron/remote").nativeTheme;
-      this.notification = window.require("@electron/remote").Notification;
       this.nodeIpc = window.require("node-ipc");
       this.process = (window as any).process;
       this.msalEncryptionService = new MsalEncryptionService(window.require("@noovolari/dpapi-addon"));
@@ -84,7 +87,18 @@ export class AppNativeService implements INativeService {
       this.tar = window.require("tar");
       this.fetch = window.fetch.bind(window);
       this.ws = window.require("ws");
-      this.systemPreferences = window.require("@electron/remote").systemPreferences;
+
+      // Main-process APIs via preload IPC (replaces @electron/remote)
+      this.app = createAppFacade();
+      this.session = createSessionFacade();
+      this.dialog = createDialogFacade();
+      this.browserWindow = createBrowserWindowFacade();
+      this.currentWindow = createCurrentWindowFacade();
+      this.menu = createMenuFacade();
+      this.tray = createTrayFacade();
+      this.nativeTheme = createNativeThemeFacade();
+      this.notification = createNotificationFacade();
+      this.systemPreferences = createSystemPreferencesFacade();
     }
   }
 
