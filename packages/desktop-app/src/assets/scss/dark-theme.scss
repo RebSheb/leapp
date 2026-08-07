@@ -730,14 +730,99 @@ body.dark-theme {
     color: $dark-main-text-color !important;
   }
 
-  // Tabs (used inside dialogs)
+  // Tabs (options dialog)
   .mat-mdc-tab-header {
     border-bottom: 0.3px solid $dark-session-card-border;
   }
 
-  .mat-mdc-tab .mdc-tab__text-label,
-  .mat-mdc-tab-link .mdc-tab__text-label {
+  .mat-mdc-tab-group,
+  .mat-mdc-tab-body-content {
     color: $dark-main-text-color;
+  }
+
+  .mat-mdc-tab-body-content {
+    background-color: $dark-modal-background;
+  }
+
+  .mat-mdc-tab .mdc-tab__text-label,
+  .mat-mdc-tab-link .mdc-tab__text-label,
+  .mat-mdc-tab .mat-tab-label-text,
+  .mat-mdc-tab .mat-tab-icon {
+    color: $dark-main-text-color !important;
+  }
+
+  .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .mat-mdc-tab.mdc-tab--active .mat-tab-label-text,
+  .mat-mdc-tab.mdc-tab--active .mat-tab-icon {
+    color: $dark-button-color !important;
+  }
+
+  .mat-mdc-tab .mdc-tab-indicator__content--underline,
+  .mat-mdc-ink-bar {
+    border-color: $dark-button-color !important;
+    background-color: $dark-button-color !important;
+  }
+
+  // Checkboxes (filter menu, column dialog, options dialog)
+  .mat-mdc-checkbox {
+    .mdc-form-field,
+    label {
+      color: $dark-main-text-color !important;
+    }
+
+    .mdc-checkbox__background {
+      border-color: $dark-main-text-color !important;
+    }
+
+    &.mat-mdc-checkbox-checked .mdc-checkbox__background,
+    .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background,
+    .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background {
+      background-color: $dark-button-color !important;
+      border-color: $dark-button-color !important;
+    }
+
+    .mdc-checkbox__checkmark {
+      color: $white-text-color !important;
+    }
+  }
+
+  // Slide toggles (options dialog: plugins, multi-console)
+  .mat-mdc-slide-toggle {
+    .mdc-switch__label,
+    label {
+      color: $dark-main-text-color !important;
+    }
+
+    .mdc-switch__track {
+      background-color: $dark-input-form-border !important;
+    }
+
+    &.mat-mdc-slide-toggle-checked .mdc-switch__track,
+    .mdc-switch--checked .mdc-switch__track {
+      background-color: rgba(82, 168, 220, 0.45) !important;
+    }
+
+    &.mat-mdc-slide-toggle-checked .mdc-switch__handle::after,
+    .mdc-switch--checked .mdc-switch__handle::after {
+      background-color: $dark-button-color !important;
+    }
+  }
+
+  // Tooltips (rendered in the CDK overlay under body.dark-theme)
+  .mat-mdc-tooltip .mdc-tooltip__surface {
+    background-color: $dark-tooltip-color !important;
+    color: $white-text-color !important;
+  }
+
+  // Filter menu content (checkbox list rendered inside a mat-menu overlay);
+  // the labels are plain spans/smalls next to the checkbox, not menu items.
+  .filter-menu {
+    span,
+    small,
+    small.category,
+    label {
+      color: $dark-main-text-color !important;
+    }
   }
 
   .sidebar-flex div button {
