@@ -8,6 +8,7 @@ import { constants } from "@noovolari/leapp-core/models/constants";
   selector: "app-noovolari-dialog",
   templateUrl: "./noovolari-dialog.component.html",
   styleUrls: ["./noovolari-dialog.component.scss"],
+  standalone: false,
 })
 export class NoovolariDialogComponent implements OnInit {
   @Input()

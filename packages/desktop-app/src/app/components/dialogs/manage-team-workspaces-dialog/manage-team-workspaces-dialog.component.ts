@@ -15,6 +15,7 @@ import { AnalyticsService } from "../../../services/analytics.service";
   selector: "app-manage-team-workspaces-dialog",
   templateUrl: "./manage-team-workspaces-dialog.component.html",
   styleUrls: ["./manage-team-workspaces-dialog.component.scss"],
+  standalone: false,
 })
 export class ManageTeamWorkspacesDialogComponent implements OnInit, OnDestroy {
   workspacesState: WorkspaceState[];

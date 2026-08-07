@@ -8,6 +8,7 @@ import { compactMode, globalColumns, IGlobalColumns } from "../../command-bar/co
   selector: "app-column-dialog",
   templateUrl: "./column-dialog.component.html",
   styleUrls: ["./column-dialog.component.scss"],
+  standalone: false,
 })
 export class ColumnDialogComponent implements OnInit, OnDestroy {
   eGlobalColumns: IGlobalColumns;

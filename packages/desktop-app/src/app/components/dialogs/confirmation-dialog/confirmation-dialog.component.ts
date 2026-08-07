@@ -6,6 +6,7 @@ import { constants } from "@noovolari/leapp-core/models/constants";
   selector: "app-confirmation-dialog",
   templateUrl: "./confirmation-dialog.component.html",
   styleUrls: ["./confirmation-dialog.component.scss"],
+  standalone: false,
 })
 export class ConfirmationDialogComponent implements OnInit {
   @Input()

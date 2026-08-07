@@ -37,6 +37,7 @@ export interface ArrowSettings {
   selector: "app-session",
   templateUrl: "./sessions.component.html",
   styleUrls: ["./sessions.component.scss"],
+  standalone: false,
 })
 export class SessionsComponent implements OnInit, OnDestroy {
   @ViewChild(SessionCardComponent) sessionCard;

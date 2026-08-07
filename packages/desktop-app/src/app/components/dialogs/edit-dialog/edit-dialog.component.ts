@@ -26,6 +26,7 @@ import { IKeychainService } from "@noovolari/leapp-core/interfaces/i-keychain-se
   selector: "app-edit-dialog",
   templateUrl: "./edit-dialog.component.html",
   styleUrls: ["./edit-dialog.component.scss"],
+  standalone: false,
 })
 export class EditDialogComponent implements OnInit, AfterViewInit {
   @ViewChild("roleInput", { static: false })

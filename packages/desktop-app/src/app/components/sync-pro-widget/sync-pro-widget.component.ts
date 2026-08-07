@@ -11,6 +11,7 @@ import { LoginWorkspaceDialogComponent } from "../dialogs/login-team-dialog/logi
   selector: "app-sync-pro-widget",
   templateUrl: "./sync-pro-widget.component.html",
   styleUrls: ["./sync-pro-widget.component.scss"],
+  standalone: false,
 })
 export class SyncProWidgetComponent implements OnInit, OnDestroy {
   isLoggedAsProOrTeam = false;

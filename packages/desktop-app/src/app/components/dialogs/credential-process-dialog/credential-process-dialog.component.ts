@@ -7,6 +7,7 @@ import { WindowService } from "../../../services/window.service";
   selector: "app-credential-process-dialog",
   templateUrl: "./credential-process-dialog.component.html",
   styleUrls: ["./credential-process-dialog.component.scss"],
+  standalone: false,
 })
 export class CredentialProcessDialogComponent implements OnInit {
   @Input()

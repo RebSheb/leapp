@@ -6,6 +6,7 @@ import { WindowService } from "../../../services/window.service";
   selector: "app-info-dialog",
   templateUrl: "./info-dialog.component.html",
   styleUrls: ["./info-dialog.component.scss"],
+  standalone: false,
 })
 export class InfoDialogComponent implements OnInit {
   @Input()

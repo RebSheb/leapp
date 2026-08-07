@@ -7,6 +7,7 @@ import { constants } from "@noovolari/leapp-core/models/constants";
   selector: "app-input-dialog",
   templateUrl: "./input-dialog.component.html",
   styleUrls: ["./input-dialog.component.scss"],
+  standalone: false,
 })
 export class InputDialogComponent implements OnInit, AfterViewInit {
   @Input()

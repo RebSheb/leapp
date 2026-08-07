@@ -6,6 +6,7 @@ import { AppProviderService } from "../../services/app-provider.service";
   selector: "app-snackbar",
   templateUrl: "./snackbar.component.html",
   styleUrls: ["./snackbar.component.scss"],
+  standalone: false,
 })
 export class SnackbarComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

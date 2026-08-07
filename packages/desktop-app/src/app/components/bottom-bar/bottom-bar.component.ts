@@ -14,6 +14,7 @@ import { constants } from "@noovolari/leapp-core/models/constants";
   selector: "app-bottom-bar",
   templateUrl: "./bottom-bar.component.html",
   styleUrls: ["./bottom-bar.component.scss"],
+  standalone: false,
 })
 export class BottomBarComponent implements OnInit {
   @Input()

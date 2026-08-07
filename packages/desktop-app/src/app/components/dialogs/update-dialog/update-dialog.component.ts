@@ -7,6 +7,7 @@ import { constants } from "@noovolari/leapp-core/models/constants";
   templateUrl: "./update-dialog.component.html",
   styleUrls: ["./update-dialog.component.scss"],
   encapsulation: ViewEncapsulation.None,
+  standalone: false,
 })
 export class UpdateDialogComponent implements OnInit {
   @Input()

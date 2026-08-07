@@ -18,6 +18,7 @@ import { AnalyticsService } from "../../../services/analytics.service";
   selector: "tr[app-session-card]",
   templateUrl: "./session-card.component.html",
   styleUrls: ["./session-card.component.scss"],
+  standalone: false,
 })
 export class SessionCardComponent implements OnInit {
   @Input()

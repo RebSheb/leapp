@@ -37,6 +37,7 @@ export const integrationHighlight = new BehaviorSubject<number>(-1);
   selector: "app-integration-bar",
   templateUrl: "./integration-bar.component.html",
   styleUrls: ["./integration-bar.component.scss"],
+  standalone: false,
 })
 export class IntegrationBarComponent implements OnInit, OnDestroy {
   @ViewChildren(MatMenuTrigger)

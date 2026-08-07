@@ -6,6 +6,7 @@ import { FormGroup } from "@angular/forms";
   selector: "app-filter-menu",
   templateUrl: "./filter-menu.component.html",
   styleUrls: ["./filter-menu.component.scss"],
+  standalone: false,
 })
 export class FilterMenuComponent implements OnInit {
   @ViewChild("matMenuTrigger", { static: false })

@@ -28,6 +28,7 @@ import { LocalstackSessionService } from "@noovolari/leapp-core/services/session
   selector: "app-create-dialog",
   templateUrl: "./create-dialog.component.html",
   styleUrls: ["./create-dialog.component.scss"],
+  standalone: false,
 })
 export class CreateDialogComponent implements OnInit {
   @Input() selectedSession;

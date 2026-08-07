@@ -13,6 +13,7 @@ import { AnalyticsService } from "../../../services/analytics.service";
   selector: "app-login-team-dialog",
   templateUrl: "./login-workspace-dialog.component.html",
   styleUrls: ["./login-workspace-dialog.component.scss"],
+  standalone: false,
 })
 export class LoginWorkspaceDialogComponent implements OnInit {
   email: FormControl;
