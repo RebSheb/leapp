@@ -12,6 +12,7 @@ import { MessageToasterService, ToastLevel } from "../../../services/message-toa
   selector: "app-change-region-dialog",
   templateUrl: "./change-region-dialog.component.html",
   styleUrls: ["./change-region-dialog.component.scss"],
+  standalone: false,
 })
 export class ChangeRegionDialogComponent implements OnInit {
   @Input()

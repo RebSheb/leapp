@@ -11,6 +11,7 @@ import { AppProviderService } from "../../../services/app-provider.service";
   selector: "app-segment-dialog",
   templateUrl: "./segment-dialog.component.html",
   styleUrls: ["./segment-dialog.component.scss"],
+  standalone: false,
 })
 export class SegmentDialogComponent implements OnInit, OnDestroy {
   @ViewChild("ngSelectComponent")

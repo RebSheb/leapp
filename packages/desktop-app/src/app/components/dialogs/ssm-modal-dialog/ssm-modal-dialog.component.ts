@@ -14,6 +14,7 @@ import { AnalyticsService } from "../../../services/analytics.service";
   selector: "app-ssm-modal-dialog",
   templateUrl: "./ssm-modal-dialog.component.html",
   styleUrls: ["./ssm-modal-dialog.component.scss"],
+  standalone: false,
 })
 export class SsmModalDialogComponent implements OnInit {
   @Input()

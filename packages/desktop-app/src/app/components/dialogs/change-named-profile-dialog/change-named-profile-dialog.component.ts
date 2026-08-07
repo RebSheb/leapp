@@ -11,6 +11,7 @@ import * as uuid from "uuid";
   selector: "app-change-named-profile-dialog",
   templateUrl: "./change-named-profile-dialog.component.html",
   styleUrls: ["./change-named-profile-dialog.component.scss"],
+  standalone: false,
 })
 export class ChangeNamedProfileDialogComponent implements OnInit {
   @Input()

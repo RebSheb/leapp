@@ -42,6 +42,7 @@ export const sidebarHighlight = new BehaviorSubject<HighlightSettings>({ showAll
   selector: "app-side-bar",
   templateUrl: "./side-bar.component.html",
   styleUrls: ["./side-bar.component.scss"],
+  standalone: false,
 })
 export class SideBarComponent implements OnInit, OnDestroy {
   @ViewChild("workspaceSelectionTrigger")

@@ -47,6 +47,7 @@ export const globalColumnsCount = new BehaviorSubject<number>(null);
   selector: "app-command-bar",
   templateUrl: "./command-bar.component.html",
   styleUrls: ["./command-bar.component.scss"],
+  standalone: false,
 })
 export class CommandBarComponent implements OnInit, OnDestroy, AfterContentChecked {
   @ViewChild("parent") parent: ElementRef;

@@ -22,6 +22,7 @@ import { constants } from "@noovolari/leapp-core/models/constants";
   selector: "app-tray-menu",
   templateUrl: "./tray-menu.component.html",
   styleUrls: ["./tray-menu.component.scss"],
+  standalone: false,
 })
 export class TrayMenuComponent implements OnInit, OnDestroy {
   // Used to define the only tray we want as active especially in linux context

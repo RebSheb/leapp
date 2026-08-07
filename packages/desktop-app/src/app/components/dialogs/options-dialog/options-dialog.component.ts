@@ -35,6 +35,7 @@ export const globalLeappProPlanStatus = new BehaviorSubject<LeappPlanStatus>(Lea
   templateUrl: "./options-dialog.component.html",
   styleUrls: ["./options-dialog.component.scss"],
   encapsulation: ViewEncapsulation.None,
+  standalone: false,
 })
 export class OptionsDialogComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()

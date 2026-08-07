@@ -16,6 +16,7 @@ import { AnalyticsService } from "../../services/analytics.service";
   selector: "app-lock-page",
   templateUrl: "./lock-page.component.html",
   styleUrls: ["./lock-page.component.scss"],
+  standalone: false,
 })
 export class LockPageComponent implements OnInit {
   email: FormControl;

@@ -5,6 +5,7 @@ import { BsModalRef } from "ngx-bootstrap/modal";
   selector: "app-authorization-dialog",
   templateUrl: "./authorization-dialog.component.html",
   styleUrls: ["./authorization-dialog.component.scss"],
+  standalone: false,
 })
 export class AuthorizationDialogComponent implements OnInit {
   @Input()

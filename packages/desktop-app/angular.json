@@ -2,7 +2,9 @@
   "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "analytics": "a9497ed5-4b2f-482f-8e51-1f9817d1bec2",
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -88,21 +90,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "leapp-client:build"
+            "buildTarget": "leapp-client:build"
           },
           "configurations": {
             "staging": {
-              "browserTarget": "leapp-client:build:staging"
+              "buildTarget": "leapp-client:build:staging"
             },
             "production": {
-              "browserTarget": "leapp-client:build:production"
+              "buildTarget": "leapp-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "leapp-client:build"
+            "buildTarget": "leapp-client:build"
           }
         },
         "test": {
@@ -153,6 +155,5 @@
         }
       }
     }
-  },
-  "defaultProject": "leapp-client"
+  }
 }

@@ -10,6 +10,7 @@ export const colorThemeSubject = new BehaviorSubject(false);
   selector: "app-check-icon-svg",
   templateUrl: "./check-icon-svg.component.html",
   styleUrls: ["./check-icon-svg.component.scss"],
+  standalone: false,
 })
 export class CheckIconSvgComponent implements OnInit, OnDestroy {
   @Input()

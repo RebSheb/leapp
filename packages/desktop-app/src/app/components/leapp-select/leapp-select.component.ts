@@ -9,6 +9,7 @@ import { LoggedEntry, LogLevel } from "@noovolari/leapp-core/services/log-servic
   selector: "app-leapp-select",
   templateUrl: "./leapp-select.component.html",
   styleUrls: ["./leapp-select.component.scss"],
+  standalone: false,
 })
 export class LeappSelectComponent implements AfterViewInit {
   @ViewChild("ngSelectComponent")

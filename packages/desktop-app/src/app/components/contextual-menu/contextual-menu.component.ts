@@ -20,6 +20,7 @@ import { Role } from "../../services/team-service";
   selector: "app-contextual-menu",
   templateUrl: "./contextual-menu.component.html",
   styleUrls: ["./contextual-menu.component.scss"],
+  standalone: false,
 })
 export class ContextualMenuComponent implements OnInit, OnDestroy {
   @ViewChild("menuTrigger", { static: false })

@@ -16,6 +16,7 @@ export enum BillingPeriod {
   selector: "app-leapp-pro-pre-checkout-dialog",
   templateUrl: "./leapp-pro-pre-checkout-dialog.component.html",
   styleUrls: ["./leapp-pro-pre-checkout-dialog.component.scss"],
+  standalone: false,
 })
 export class LeappProPreCheckoutDialogComponent implements OnInit {
   public eBillingPeriod = BillingPeriod;
