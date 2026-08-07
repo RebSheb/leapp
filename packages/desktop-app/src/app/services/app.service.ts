@@ -40,17 +40,22 @@ export class AppService {
 
     this.logService = appProviderService.logService;
 
-    // Global Configure logger
-    if (this.appNativeService.log) {
-      const logPaths = {
-        [OperatingSystem.mac]: `${this.appNativeService.process.env.HOME}/Library/Logs/Leapp/log.electronService.log`,
-        [OperatingSystem.linux]: `${this.appNativeService.process.env.HOME}/.config/Leapp/logs/log.electronService.log`,
-        [OperatingSystem.windows]: `${this.appNativeService.process.env.USERPROFILE}\\AppData\\Roaming\\Leapp\\log.electronService.log`,
-      };
-
-      this.appNativeService.log.transports.console.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{processType}] {text}";
-      this.appNativeService.log.transports.file.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] [{processType}] {text}";
-      this.appNativeService.log.transports.file.resolvePath = () => logPaths[this.detectOs()];
+    // Global Configure logger.
+    // electron-log v5 changed the renderer logger: file logging is configured in the
+    // main process (see electron/main.ts), and some transports are undefined here, so
+    // we guard every access to avoid crashing renderer bootstrap.
+    const logPaths = {
+      [OperatingSystem.mac]: `${this.appNativeService.process.env.HOME}/Library/Logs/Leapp/log.electronService.log`,
+      [OperatingSystem.linux]: `${this.appNativeService.process.env.HOME}/.config/Leapp/logs/log.electronService.log`,
+      [OperatingSystem.windows]: `${this.appNativeService.process.env.USERPROFILE}\\AppData\\Roaming\\Leapp\\log.electronService.log`,
+    };
+    const transports = this.appNativeService.log?.transports;
+    if (transports?.console) {
+      transports.console.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{processType}] {text}";
+    }
+    if (transports?.file) {
+      transports.file.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] [{processType}] {text}";
+      transports.file.resolvePathFn = () => logPaths[this.detectOs()];
     }
 
     this.getMetadata();

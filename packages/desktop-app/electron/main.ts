@@ -7,6 +7,12 @@ const { app, BrowserWindow, ipcMain, Tray, Menu } = require("electron");
 const electronLocalshortcut = require('electron-localshortcut');
 const { autoUpdater } = require("electron-updater");
 
+// electron-log v5: initialize in the main process so renderer logs (electron-log/renderer)
+// are forwarded over IPC and written to the shared log file.
+const log = require("electron-log/main");
+log.initialize();
+log.transports.file.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] [{processType}] {text}";
+
 const url = require("url");
 const fs = require("fs");
 const os = require("os");
@@ -142,7 +148,23 @@ const generateMainWindow = () => {
     // Open the dev tools only if not in production
     if (!environment.production) {
       // Open web tools for diagnostics
-      win.webContents.once("dom-ready", () => {});
+      win.webContents.once("dom-ready", () => {
+        win.webContents.openDevTools({ mode: "detach" });
+      });
+      // Forward renderer diagnostics to the main-process stdout so failures are
+      // visible even when running headless (e.g. CI / WSL without a display).
+      win.webContents.on("console-message", (_e, level, message, line, sourceId) => {
+        console.log(`[renderer:${level}] ${message} (${sourceId}:${line})`);
+      });
+      win.webContents.on("did-fail-load", (_e, code, desc, failedUrl) => {
+        console.log(`[did-fail-load] code=${code} desc=${desc} url=${failedUrl}`);
+      });
+      win.webContents.on("preload-error", (_e, preloadPath, error) => {
+        console.log(`[preload-error] ${preloadPath} ${error && error.stack ? error.stack : error}`);
+      });
+      win.webContents.on("render-process-gone", (_e, details) => {
+        console.log(`[render-process-gone] ${JSON.stringify(details)}`);
+      });
     }
 
     win.on("close", (event) => {
